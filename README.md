@@ -16,7 +16,7 @@
 
 ---
 
-<p align="center"> FPersonal finance analysis.
+<p align="center"> Personal finance analysis.
     <br>
 </p>
 
