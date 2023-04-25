@@ -1,29 +1,21 @@
 import { useState } from 'react';
 import reactLogo from './assets/react.svg';
-import viteLogo from '/vite.svg';
+import logo from '/logo.svg';
 import './App.css';
 
 function App() {
-	const [count, setCount] = useState(0);
-
 	return (
 		<>
 			<div>
-				<a href='https://vitejs.dev' rel='noopener'>
-					<img src={viteLogo} className='logo' alt='Vite logo' />
-				</a>
-				<a href='https://react.dev' rel='noopener'>
-					<img src={reactLogo} className='logo react' alt='React logo' />
-				</a>
+				<img src={logo} className='logo' alt='Vite logo' />
 			</div>
-			<h1>Vite + React</h1>
-			<div className='card'>
-				<button onClick={() => setCount((count) => count + 1)}>count is {count}</button>
-				<p>
-					Edit <code>src/App.tsx</code> and save to test HMR
-				</p>
-			</div>
-			<p className='read-the-docs'>Click on the Vite and React logos to learn more</p>
+			<h1>Plutonomic</h1>
+			<div className='card'></div>
+			<p>
+				plutonomic (adj.) "of or pertaining to the science or study of wealth or riches," 1853, from Greek ploutos "wealth" (see Pluto) + ending from economic. Fell from
+				currency 1870s, revived 1990s. Related: Plutonomy (1851); plutonomics (1991, a 19c. word for "the science of wealth and the natural laws governing its production
+				and distribution" was plutology); plutonomist (1869).
+			</p>
 		</>
 	);
 }
