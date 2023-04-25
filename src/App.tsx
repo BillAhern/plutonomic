@@ -1,6 +1,6 @@
 import './App.css';
 import logo from '/logo.svg';
-import FileConvert from './components/file-convert.tsx';
+import FileConvert from './components/FileConvert.tsx';
 
 function App() {
 	return (
