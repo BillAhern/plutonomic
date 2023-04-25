@@ -1,7 +1,6 @@
-import { useState } from 'react';
-import reactLogo from './assets/react.svg';
-import logo from '/logo.svg';
 import './App.css';
+import logo from '/logo.svg';
+import FileConvert from './components/file-convert.tsx';
 
 function App() {
 	return (
@@ -16,6 +15,7 @@ function App() {
 				currency 1870s, revived 1990s. Related: Plutonomy (1851); plutonomics (1991, a 19c. word for "the science of wealth and the natural laws governing its production
 				and distribution" was plutology); plutonomist (1869).
 			</p>
+			<FileConvert />
 		</>
 	);
 }
