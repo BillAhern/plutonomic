@@ -25,6 +25,7 @@ function FileConvert(): JSX.Element {
 			}
 
 			setJsonData(json);
+			window.sessionStorage.setItem('pluto', JSON.stringify(json));
 		};
 
 		fileReader.readAsText(file);
@@ -33,7 +34,6 @@ function FileConvert(): JSX.Element {
 	return (
 		<div>
 			<input type='file' onChange={handleFileChange} />
-			<pre>{JSON.stringify(jsonData, null, 2)}</pre>
 		</div>
 	);
 }
