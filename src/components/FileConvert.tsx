@@ -1,34 +1,26 @@
-import React, { useState } from 'react';
+import React from 'react';
+import Papa from 'papaparse';
 
 function FileConvert(): JSX.Element {
-	const [jsonData, setJsonData] = useState<any[]>([]);
-
 	const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-		const file = event.target.files![0];
-		const fileReader = new FileReader();
+		try {
+			const file = event.target.files![0];
+			const fileReader = new FileReader();
 
-		fileReader.onload = (event: any) => {
-			const csvData = event.target.result;
-			const lines = csvData.split('\n');
-			const headers = lines[0].split(',');
-			const json = [];
+			fileReader.onload = async (event: any) => {
+				const csvData = event.target.result;
+				const converted = Papa.parse(csvData, { header: true });
 
-			for (let i = 1; i < lines.length; i++) {
-				const data = lines[i].split(',');
-				const item: any = {};
+				const parsedData = converted?.data;
+				console.log(`parsedData: ${parsedData}`);
 
-				for (let j = 0; j < headers.length; j++) {
-					item[headers[j]] = data[j];
-				}
+				window.sessionStorage.setItem('pluto', JSON.stringify(parsedData));
+			};
 
-				json.push(item);
-			}
-
-			setJsonData(json);
-			window.sessionStorage.setItem('pluto', JSON.stringify(json));
-		};
-
-		fileReader.readAsText(file);
+			fileReader.readAsText(file);
+		} catch (error) {
+			console.log(`\nhandleFileChange => ERROR: ${error}\n`);
+		}
 	};
 
 	return (

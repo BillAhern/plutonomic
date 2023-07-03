@@ -1,12 +1,11 @@
 import './App.css';
 import logo from '/logo.svg';
 import FileConvert from './components/FileConvert.tsx';
-import { getUniqueItems } from './services/data-filters.ts';
 import Filters from './components/filters.tsx';
 
 function App() {
 	return (
-		<>
+		<div className='main-container'>
 			<div>
 				<img src={logo} className='logo' alt='Vite logo' />
 			</div>
@@ -19,7 +18,7 @@ function App() {
 			</p>
 			<FileConvert />
 			<Filters />
-		</>
+		</div>
 	);
 }
 
