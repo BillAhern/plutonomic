@@ -2,6 +2,10 @@ import React from 'react';
 import Papa from 'papaparse';
 
 function FileConvert(): JSX.Element {
+	/**
+	 * Loads local user CSV file and convers it into JSON for SessionStorage
+	 * @param event
+	 */
 	const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		try {
 			const file = event.target.files![0];
@@ -10,9 +14,7 @@ function FileConvert(): JSX.Element {
 			fileReader.onload = async (event: any) => {
 				const csvData = event.target.result;
 				const converted = Papa.parse(csvData, { header: true });
-
 				const parsedData = converted?.data;
-				console.log(`parsedData: ${parsedData}`);
 
 				window.sessionStorage.setItem('pluto', JSON.stringify(parsedData));
 			};

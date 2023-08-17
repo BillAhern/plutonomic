@@ -4,6 +4,10 @@ import { getUniqueItems } from '../services/data-filters.js';
 const filters: React.FC = () => {
 	let uniqueTransactions = []; //put this into a state
 
+	/**
+	 * Checks sessionStorage for data and builds an array of unique items
+	 * @returns array
+	 */
 	const getDataFromLocal = () => {
 		let parsedDataString: any;
 		const checkSessionStorage = window.sessionStorage.getItem('pluto');
@@ -19,7 +23,7 @@ const filters: React.FC = () => {
 		return uniqueItems;
 	};
 
-	// Experiemnting here with a single event handler but I don't like it
+	// Experimenting here with a single event handler
 	const handleClick = async (event: any) => {
 		switch (event.type) {
 			case 'click':
