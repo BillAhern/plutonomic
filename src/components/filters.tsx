@@ -1,8 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { getUniqueItems } from '../services/data-filters.js';
 
 const filters: React.FC = () => {
-	let uniqueTransactions = []; //put this into a state
+	// let uniqueTransactions = []; //put this into a state
+	const [uniqueTransactions, setUniqueTransactions] = useState([]);
+	const ref = useRef(null);
+	const element = ref.current;
+
+	useEffect(() => {
+		setUniqueTransactions(getDataFromLocal());
+	}, []);
 
 	/**
 	 * Checks sessionStorage for data and builds an array of unique items
@@ -17,17 +24,20 @@ const filters: React.FC = () => {
 			parsedDataString = JSON.parse(checkSessionStorage);
 			uniqueItems = getUniqueItems(parsedDataString);
 		} else {
-			parsedDataString = 'No data in SessionStorage.';
+			return 'No data in SessionStorage.';
 		}
+
+		console.log('getDataFromLocal called');
 
 		return uniqueItems;
 	};
 
-	// Experimenting here with a single event handler
-	const handleClick = async (event: any) => {
+	// Experimenting here with a switch event handler
+	const handleClick = (event: any) => {
 		switch (event.type) {
 			case 'click':
-				uniqueTransactions = getDataFromLocal();
+				// uniqueTransactions = getDataFromLocal();
+				setUniqueTransactions(getDataFromLocal());
 				console.log('uniqueTransactions\n', uniqueTransactions);
 				break;
 
@@ -41,6 +51,7 @@ const filters: React.FC = () => {
 			<button type='button' value={'Get Default Sort'} onClick={handleClick}>
 				Get default
 			</button>
+			<hr />
 		</>
 	);
 };

@@ -2,7 +2,6 @@ import './App.css';
 import logo from '/logo.svg';
 import FileConvert from './components/FileConvert.tsx';
 import Filters from './components/filters.tsx';
-import UniqueDebitSums from './components/UniqueDebitSums.tsx';
 
 function App() {
 	return (
@@ -19,7 +18,8 @@ function App() {
 			</p>
 			<FileConvert />
 			<Filters />
-			<UniqueDebitSums />
+			{/* <UniqueDebitSums /> */}
+
 		</div>
 	);
 }

@@ -3,7 +3,7 @@ import Papa from 'papaparse';
 
 function FileConvert(): JSX.Element {
 	/**
-	 * Loads local user CSV file and convers it into JSON for SessionStorage
+	 * Loads local user CSV file and converts it into JSON for SessionStorage
 	 * @param event
 	 */
 	const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
