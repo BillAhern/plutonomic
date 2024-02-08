@@ -1,5 +1,6 @@
 import React from 'react';
 import Papa from 'papaparse';
+import getDataFromLocal from '../services/session-data.js';
 
 function FileConvert(): JSX.Element {
 	/**
@@ -7,6 +8,10 @@ function FileConvert(): JSX.Element {
 	 * @param event
 	 */
 	const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+		// addEventListener('file-loaded', () => {
+		// 	console.log('storage event heard');
+		// });
+
 		try {
 			const file = event.target.files![0];
 			const fileReader = new FileReader();
@@ -16,10 +21,13 @@ function FileConvert(): JSX.Element {
 				const converted = Papa.parse(csvData, { header: true });
 				const parsedData = converted?.data;
 
-				window.sessionStorage.setItem('pluto', JSON.stringify(parsedData));
+				sessionStorage.setItem('pluto', JSON.stringify(parsedData));
+				dispatchEvent(new Event('file-loaded'));
 			};
 
 			fileReader.readAsText(file);
+
+			getDataFromLocal();
 		} catch (error) {
 			console.log(`\nhandleFileChange => ERROR: ${error}\n`);
 		}
