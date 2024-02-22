@@ -8,16 +8,23 @@ const getDataFromLocal = () => {
 	let parsedDataString: any;
 	const checkSessionStorage = window.sessionStorage.getItem('pluto');
 	let uniqueItems = [];
+	const noDataNotice = {
+		'Transaction Type': '',
+		Date: '',
+		'Account Type': '',
+		Description: 'No Data. Choose a file to load.',
+		Amount: '',
+		'Reference No.': ' ',
+		Credits: '',
+		Debits: '',
+	};
 
 	if (checkSessionStorage) {
 		parsedDataString = JSON.parse(checkSessionStorage);
 		uniqueItems = getUniqueItems(parsedDataString);
 	} else {
-		console.log('No data in SessionStorage.');
-		return 'No data in SessionStorage.';
+		uniqueItems = getUniqueItems([noDataNotice]);
 	}
-
-	console.log('getDataFromLocal called');
 
 	return uniqueItems;
 };

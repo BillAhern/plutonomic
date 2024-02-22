@@ -7,7 +7,7 @@ function App() {
 	return (
 		<div className='main-container'>
 			<div>
-				<img src={logo} className='logo' alt='Vite logo' />
+				<img src={logo} className='logo' alt='plutonomic logo' />
 			</div>
 			<h1>Plutonomic</h1>
 			<div className='card'></div>
