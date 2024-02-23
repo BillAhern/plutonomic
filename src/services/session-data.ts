@@ -12,7 +12,7 @@ const getDataFromLocal = () => {
 		'Transaction Type': '',
 		Date: '',
 		'Account Type': '',
-		Description: 'No Data. Choose a file to load.',
+		Description: 'No Data. Choose a file to analyze.',
 		Amount: '',
 		'Reference No.': ' ',
 		Credits: '',

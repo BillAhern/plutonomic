@@ -11,8 +11,6 @@ const FilterUnique: React.FC = () => {
 
 	// Once data is loaded into storage, filter it
 	addEventListener('file-loaded', () => {
-		// use setUniqueTransactions to put filtered data into state
-		// console.table(getDataFromLocal());
 		if (getDataFromLocal()) {
 			sessionData = getDataFromLocal();
 			setUniqueDebit(sessionData);
