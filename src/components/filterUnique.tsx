@@ -36,7 +36,6 @@ const FilterUnique: React.FC = () => {
 					<li key={idx}>{debit}</li>
 				</ul>
 			))}
-			<hr />
 		</>
 	);
 };

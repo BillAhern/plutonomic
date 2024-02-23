@@ -65,7 +65,6 @@ const UniqueDebitSums: React.FC = () => {
 			<button type='button' value={'Get Unique Sums'} onClick={handleClick}>
 				Unique Sums
 			</button>
-			<hr />
 		</>
 	);
 };
