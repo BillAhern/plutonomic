@@ -5,15 +5,22 @@ import FilterUnique from './components/filterUnique.tsx';
 
 function App() {
 	return (
-		<div className='main-container'>
-			<div>
-				<img src={logo} className='logo' alt='plutonomic logo' />
+		<div className='grid-container' id="grid">
+			<div className='header'>
+				<div className='header-row'>
+					<img className='logo' src={logo} alt='plutonomic logo' />
+					<h1 className='title'>Plutonomic</h1>
+					<div className='filter-select'>
+						<FileConvert />
+					</div>
+				</div>
+				<p>plutonomic (adj.) "of or pertaining to the science or study of wealth or riches".</p>
 			</div>
-			<h1>Plutonomic</h1>
-			<div className='card'></div>
-			<p>plutonomic (adj.) "of or pertaining to the science or study of wealth or riches".</p>
-			<FileConvert />
-			<FilterUnique />
+			<div className='list-unique'>
+				<FilterUnique />
+			</div>
+			<div className='daily-spend'>Daily Spend</div>
+			<div className='weekly-spend'>Weekly Spend</div>
 		</div>
 	);
 }
