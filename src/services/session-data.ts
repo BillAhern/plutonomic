@@ -1,13 +1,12 @@
-import { getUniqueItems } from '../services/data-filters.js';
+import { DebtorType } from '../types.ts';
 
 /**
  * Checks sessionStorage for data and builds an array of unique items
  * @returns array
  */
 const getDataFromLocal = () => {
-	let parsedDataString: any;
+	let parsedDataString: DebtorType[];
 	const checkSessionStorage = window.sessionStorage.getItem('pluto');
-	let uniqueItems = [];
 	const noDataNotice = {
 		'Transaction Type': '',
 		Date: '',
@@ -21,12 +20,11 @@ const getDataFromLocal = () => {
 
 	if (checkSessionStorage) {
 		parsedDataString = JSON.parse(checkSessionStorage);
-		uniqueItems = getUniqueItems(parsedDataString);
 	} else {
-		uniqueItems = getUniqueItems([noDataNotice]);
+		parsedDataString = [noDataNotice];
 	}
 
-	return uniqueItems;
+	return parsedDataString;
 };
 
 export default getDataFromLocal;

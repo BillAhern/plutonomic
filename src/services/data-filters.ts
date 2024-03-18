@@ -1,20 +1,13 @@
-type rawCsv = {
-	'Account Type': string;
-	Amount: string;
-	Credits: string;
-	Date: string;
-	Debits: string;
-	Description: string;
-	'Reference No.': string;
-	'Transaction Type': string;
-};
+import { DebtorType } from '../types.ts';
 
 /**
- * Read loaded file data and return unique items
- * @param data rawCsv
- * @returns array
+ * This function takes an array of DebtorType objects and returns only unique objects
+ * based based on the object description property
+ *
+ * @param {DebtorType[]} data - The array of DebtorType objects.
+ * @returns {any[]} An array of unique descriptions from the input array.
  */
-export const getUniqueItems = (data: rawCsv[]): any => {
+export const getUniqueItems = (data: DebtorType[]): any => {
 	const _data = data;
 	const uniqueArr = Array.from(new Set(_data.map((item) => item.Description)));
 

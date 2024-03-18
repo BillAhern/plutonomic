@@ -1,6 +1,6 @@
 import React from 'react';
 import Papa from 'papaparse';
-import getDataFromLocal from '../services/session-data.js';
+import getDataFromLocal from '../services/session-data.ts';
 
 function FileConvert(): JSX.Element {
 	/**

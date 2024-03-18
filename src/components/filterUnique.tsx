@@ -1,20 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import getDataFromLocal from '../services/session-data.js';
+import { getUniqueItems } from '../services/data-filters.ts';
+import { DebtorType } from '../types.ts';
 
 const FilterUnique: React.FC = () => {
 	const [uniqueDebit, setUniqueDebit] = useState([]);
 	let sessionData;
 
 	useEffect(() => {
-		setUniqueDebit(getDataFromLocal());
+		setDefault();
 	}, []);
 
 	// Once data is loaded into storage, filter it
 	addEventListener('file-loaded', () => {
-		if (getDataFromLocal()) {
-			sessionData = getDataFromLocal();
-			setUniqueDebit(sessionData);
-		}
+		sessionData = getDataFromLocal();
+		const filteredData = getUniqueItems(sessionData);
+		setUniqueDebit(filteredData);
 	});
 
 	// Experimenting here with a switch event handler
@@ -29,13 +30,24 @@ const FilterUnique: React.FC = () => {
 	// 	}
 	// };
 
+	const setDefault = () => {
+		let localData = [{} as DebtorType];
+		localData = getDataFromLocal();
+		if (!localData[0].Date) {
+			// setUniqueDebit(localData);
+			console.log(localData[0].Description);
+		} else {
+			// setUniqueDebit(getDataFromLocal());
+		}
+	};
+
 	return (
 		<>
-			{uniqueDebit.map((debit: string, idx: number) => (
-				<ul>
+			<ul>
+				{uniqueDebit.map((debit: string, idx: number) => (
 					<li key={idx}>{debit}</li>
-				</ul>
-			))}
+				))}
+			</ul>
 		</>
 	);
 };
