@@ -14,11 +14,11 @@ function App() {
 					<FileConvert />
 				</div>
 			</div>
-			<div className='data-container'>
-				<div className='list-unique auto item'>
+			{/* <div className='data-container'>
+				<div className='list-unique'>
 					<FilterUnique />
 				</div>
-				<div className='daily-spend auto item'>
+				<div className='daily-spend'>
 					Daily Spend <br />
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Commodo sed egestas egestas
 					fringilla phasellus faucibus scelerisque eleifend donec. Scelerisque fermentum dui faucibus in ornare quam. Odio tempor orci dapibus ultrices in iaculis nunc
@@ -31,7 +31,7 @@ function App() {
 					feugiat nisl pretium fusce id velit ut tortor pretium. Duis tristique sollicitudin nibh sit. Sodales ut eu sem integer. Ullamcorper velit sed ullamcorper morbi
 					tincidunt ornare massa. Blandit massa enim nec dui nunc mattis. At tempor commodo ullamcorper a lacus.
 				</div>
-				<div className='weekly-spend auto item'>
+				<div className='weekly-spend'>
 					Weekly Spend <br />
 					Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Commodo sed egestas egestas
 					fringilla phasellus faucibus scelerisque eleifend donec. Scelerisque fermentum dui faucibus in ornare quam. Odio tempor orci dapibus ultrices in iaculis nunc
@@ -44,6 +44,17 @@ function App() {
 					feugiat nisl pretium fusce id velit ut tortor pretium. Duis tristique sollicitudin nibh sit. Sodales ut eu sem integer. Ullamcorper velit sed ullamcorper morbi
 					tincidunt ornare massa. Blandit massa enim nec dui nunc mattis. At tempor commodo ullamcorper a lacus.
 				</div>
+			</div> */}
+			<div className='grid'>
+				<div className='grid-item debit-list'>
+					<FilterUnique />
+				</div>
+				<div className='grid-item'></div>
+				<div className='grid-item'></div>
+				<div className='grid-item'></div>
+				<div className='grid-item'></div>
+				<div className='grid-item'></div>
+				<div className='grid-item'></div>
 			</div>
 		</>
 	);
