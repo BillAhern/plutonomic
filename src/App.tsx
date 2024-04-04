@@ -46,11 +46,11 @@ function App() {
 				</div>
 			</div> */}
 			<div className='grid'>
-				<div className='grid-item debit-list'>
+				<div className='grid-item list-unique'>
 					<FilterUnique />
 				</div>
-				<div className='grid-item'></div>
-				<div className='grid-item'></div>
+				<div className='grid-item daily-spend'></div>
+				<div className='grid-item weekly-spend'></div>
 				<div className='grid-item'></div>
 				<div className='grid-item'></div>
 				<div className='grid-item'></div>
