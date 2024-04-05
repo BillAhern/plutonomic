@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import getDataFromLocal from '../services/session-data.js';
 import { getUniqueItems } from '../services/data-filters.ts';
+import getDataFromLocal from '../services/session-data.js';
 import { DebtorType } from '../types.ts';
+import './filterUnique.css';
 
 const FilterUnique: React.FC = () => {
 	const [uniqueDebit, setUniqueDebit] = useState([]);
@@ -18,21 +19,10 @@ const FilterUnique: React.FC = () => {
 		setUniqueDebit(filteredData);
 	});
 
-	// Experimenting here with a switch event handler
-	// const handleEvent = (event: any) => {
-	// 	switch (event.type) {
-	// 		case 'click':
-	// 			setUniqueDebit(getDataFromLocal());
-	// 			console.log('uniqueTransactions\n', uniqueDebit);
-	// 			break;
-	// 		default:
-	// 			break;
-	// 	}
-	// };
-
 	const setDefault = () => {
 		let localData = [{} as DebtorType];
 		localData = getDataFromLocal();
+
 		if (!localData[0].Date) {
 			// setUniqueDebit(localData);
 			console.log(localData[0].Description);
