@@ -13,3 +13,7 @@ export const getUniqueItems = (data: DebtorType[]): any => {
 
 	return uniqueArr;
 };
+
+export const filterAmazon = () => { }
+
+export const reconcilePaypal = () => { }
