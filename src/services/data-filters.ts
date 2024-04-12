@@ -8,12 +8,54 @@ import { DebtorType } from '../types.ts';
  * @returns {any[]} An array of unique descriptions from the input array.
  */
 export const getUniqueItems = (data: DebtorType[]): any => {
-	const _data = data;
-	const uniqueArr = Array.from(new Set(_data.map((item) => item.Description)));
+	const cleanDebitArray = removeNonDebit(data);
+	const cleanArray: DebtorType[] = reduceAmazon(cleanDebitArray);
+
+	const uniqueArr = Array.from(new Set(cleanArray.map((item) => item.Description)));
+
+	// Put something in here to omit check payments
 
 	return uniqueArr;
 };
 
-export const filterAmazon = () => { }
+export const reduceAmazon = (filteredData: DebtorType[]) => {
+	const cleanAmazonArray: DebtorType[] = [];
+	let amazonCount = 0;
 
-export const reconcilePaypal = () => { }
+	filteredData.forEach((item: DebtorType) => {
+		const isAmazon = getItemByRegex(item.Description, /amazon/i);
+
+		if (isAmazon && amazonCount === 0) {
+			cleanAmazonArray.push(item);
+			amazonCount++;
+		} else {
+			cleanAmazonArray.push(item);
+		}
+	});
+
+	return cleanAmazonArray;
+};
+
+export const reconcilePaypal = () => {};
+
+export const removeNonDebit = (data: any[]) => {
+	const debitArray: DebtorType[] = [];
+
+	data.forEach((debit) => {
+		if (debit['Transaction Type'] !== 'DIRECT DEPOSIT' && debit['Transaction Type'] !== 'TRANSFER') {
+			debitArray.push(debit);
+		}
+	});
+
+	return debitArray;
+};
+
+const getItemByRegex = (description: string, descValue: RegExp): boolean => {
+	if (description === undefined) {
+		return false;
+	} else if (description.search(descValue) !== -1) {
+		return true;
+	} else {
+		return false;
+	}
+};

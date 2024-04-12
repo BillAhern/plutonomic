@@ -10,4 +10,5 @@ ul li {
 
 li + li {
     margin-top: 10px;
+    vertical-align: middle;
 }

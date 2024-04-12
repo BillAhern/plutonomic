@@ -1,6 +1,8 @@
 import './App.css';
 import FileConvert from './components/fileConvert.tsx';
 import FilterUnique from './components/filterUnique.tsx';
+import DailySpend from './components/dailySpend.tsx';
+import WeeklySpend from './components/weeklySpend.tsx';
 import logo from '/logo.svg';
 
 function App() {
@@ -18,8 +20,12 @@ function App() {
 				<div className='grid-item list-unique'>
 					<FilterUnique />
 				</div>
-				<div className='grid-item daily-spend'></div>
-				<div className='grid-item weekly-spend'></div>
+				<div className='grid-item daily-spend'>
+					<DailySpend />
+				</div>
+				<div className='grid-item weekly-spend'>
+					<WeeklySpend />
+				</div>
 				<div className='grid-item'></div>
 				<div className='grid-item'></div>
 				<div className='grid-item'></div>

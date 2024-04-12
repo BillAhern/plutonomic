@@ -4,7 +4,7 @@ import './weeklySpend.css';
 const WeeklySpend: React.FC = () => {
     return (
         <>
-
+            Weekly Spend
         </>
     )};
 
