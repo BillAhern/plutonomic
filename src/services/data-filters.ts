@@ -10,10 +10,9 @@ import { DebtorType } from '../types.ts';
 export const getUniqueItems = (data: DebtorType[]): any => {
 	const cleanDebitArray = removeNonDebit(data);
 	const cleanArray: DebtorType[] = reduceAmazon(cleanDebitArray);
+	const emptyDescArray: DebtorType[] = setDescriptionByType(cleanArray);
 
-	const uniqueArr = Array.from(new Set(cleanArray.map((item) => item.Description)));
-
-	// Put something in here to omit check payments
+	let uniqueArr = Array.from(new Set(emptyDescArray.map((item) => item.Description)));
 
 	return uniqueArr;
 };
@@ -58,4 +57,19 @@ const getItemByRegex = (description: string, descValue: RegExp): boolean => {
 	} else {
 		return false;
 	}
+};
+
+const setDescriptionByType = (dataArray: DebtorType[]) => {
+	let updatedArray: DebtorType[] = [];
+
+	dataArray.forEach((item: any) => {
+		if (!item.Description) {
+			item.Description = item['Transaction Type'];
+			updatedArray.push(item);
+		} else {
+			updatedArray.push(item);
+		}
+	});
+
+	return updatedArray;
 };
