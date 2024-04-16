@@ -86,9 +86,9 @@ const getItemByRegex = (description: string, descValue: RegExp): boolean => {
 };
 
 /**
- * Updates the description of each item in the dataArray.
- * If the item does not have a description, it sets the description to the item's 'Transaction Type'.
- * It returns an array of updated items.
+ * Updates the description of each item in the dataArray based on its 'Transaction Type'.
+ * If an item does not have a 'Transaction Type', it is ignored.
+ * If an item does not have a description, its 'Transaction Type' is used as the description.
  *
  * @param {DebtorType[]} dataArray - The array of debtor types to be updated.
  * @returns {DebtorType[]} The updated array of debtor types.
@@ -97,7 +97,9 @@ const setDescriptionByType = (dataArray: DebtorType[]) => {
 	let updatedArray: DebtorType[] = [];
 
 	dataArray.forEach((item: any) => {
-		if (!item.Description) {
+		if (!item['Transaction Type']) {
+			return;
+		} else if (!item.Description) {
 			item.Description = item['Transaction Type'];
 			updatedArray.push(item);
 		} else {
