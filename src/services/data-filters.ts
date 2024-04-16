@@ -1,7 +1,7 @@
 import { DebtorType } from '../types.ts';
 
 /**
- * This function takes an array of DebtorType objects and returns only unique objects
+ * Takes an array of DebtorType objects and returns only unique objects
  * based based on the object description property
  *
  * @param {DebtorType[]} data - The array of DebtorType objects.
@@ -17,6 +17,11 @@ export const getUniqueItems = (data: DebtorType[]): any => {
 	return uniqueArr;
 };
 
+/**
+ * Filters an array of debtors, reducing multiple Amazon entries to a single entry.
+ * @param {DebtorType[]} filteredData - An array of debtor objects to be filtered.
+ * @returns {DebtorType[]} cleanAmazonArray - An array of debtor objects, with multiple Amazon entries reduced to a single entry.
+ */
 export const reduceAmazon = (filteredData: DebtorType[]) => {
 	const cleanAmazonArray: DebtorType[] = [];
 	let amazonCount = 0;
@@ -37,6 +42,20 @@ export const reduceAmazon = (filteredData: DebtorType[]) => {
 
 export const reconcilePaypal = () => {};
 
+/**
+ * Filters out non-debit transactions from the provided data.
+ *
+ * @param {any[]} data - The array of transaction data to be filtered.
+ * @returns {DebtorType[]} debitArray - The array of debit transactions.
+ *
+ * @example
+ * const data = [
+ *  { 'Transaction Type': 'DIRECT DEPOSIT', ... },
+ *  { 'Transaction Type': 'TRANSFER', ... },
+ *  { 'Transaction Type': 'DEBIT', ... }
+ * ];
+ * const debits = removeNonDebit(data);
+ */
 export const removeNonDebit = (data: any[]) => {
 	const debitArray: DebtorType[] = [];
 
@@ -49,6 +68,13 @@ export const removeNonDebit = (data: any[]) => {
 	return debitArray;
 };
 
+/**
+ * Checks if a given regular expression matches any part of a description.
+ *
+ * @param {string} description - The description to be searched.
+ * @param {RegExp} descValue - The regular expression to be used for searching.
+ * @returns {boolean} Returns true if the regular expression matches any part of the description, false otherwise.
+ */
 const getItemByRegex = (description: string, descValue: RegExp): boolean => {
 	if (description === undefined) {
 		return false;
@@ -59,6 +85,14 @@ const getItemByRegex = (description: string, descValue: RegExp): boolean => {
 	}
 };
 
+/**
+ * Updates the description of each item in the dataArray.
+ * If the item does not have a description, it sets the description to the item's 'Transaction Type'.
+ * It returns an array of updated items.
+ *
+ * @param {DebtorType[]} dataArray - The array of debtor types to be updated.
+ * @returns {DebtorType[]} The updated array of debtor types.
+ */
 const setDescriptionByType = (dataArray: DebtorType[]) => {
 	let updatedArray: DebtorType[] = [];
 
