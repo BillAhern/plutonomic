@@ -45,7 +45,7 @@ export const reconcilePaypal = () => {};
 /**
  * Filters out non-debit transactions from the provided data.
  *
- * @param {any[]} data - The array of transaction data to be filtered.
+ * @param {DebtorType[]} data - The array of transaction data to be filtered.
  * @returns {DebtorType[]} debitArray - The array of debit transactions.
  *
  * @example
@@ -56,7 +56,7 @@ export const reconcilePaypal = () => {};
  * ];
  * const debits = removeNonDebit(data);
  */
-export const removeNonDebit = (data: any[]) => {
+export const removeNonDebit = (data: DebtorType[]) => {
 	const debitArray: DebtorType[] = [];
 
 	data.forEach((debit) => {
