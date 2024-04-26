@@ -1,19 +1,15 @@
-import React, { useEffect, useState, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { DebitContext } from '../services/debitContext.ts';
 import { getUniqueItems } from '../services/data-filters.ts';
 import getDataFromLocal from '../services/session-data.js';
 import { DebtorType } from '../types.ts';
 import './filterUnique.css';
 
-const FilterUnique: React.FC = () => {
+const FilterUnique = () => {
+	const data = useContext(DebitContext);
 	const [uniqueDebit, setUniqueDebit] = useState([]);
-	const [checkUnique, setCheckUnique] = useState([]);
 	let sessionData;
 	let currentDebit;
-
-	useEffect(() => {
-		setDefault();
-	}, []);
 
 	addEventListener('file-loaded', () => {
 		sessionData = getDataFromLocal();
@@ -32,18 +28,6 @@ const FilterUnique: React.FC = () => {
 			}
 		}
 	});
-
-	const setDefault = () => {
-		let localData = [{} as DebtorType];
-		localData = getDataFromLocal();
-
-		if (!localData[0].Date) {
-			// setUniqueDebit(localData);
-			console.log(localData[0].Description);
-		} else {
-			// setUniqueDebit(getDataFromLocal());
-		}
-	};
 
 	const setCurrentDebit = (e: any) => {
 		const target = e.target as HTMLInputElement;

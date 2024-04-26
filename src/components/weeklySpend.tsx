@@ -1,7 +1,7 @@
 import React from 'react';
 import './weeklySpend.css';
 
-const WeeklySpend: React.FC = () => {
+const WeeklySpend = () => {
     return (
         <>
             Weekly Spend

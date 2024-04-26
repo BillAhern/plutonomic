@@ -1,7 +1,7 @@
 import { DebtorType } from '../types.ts';
 
 /**
- * Checks sessionStorage for data and builds an array of unique items
+ * Checks sessionStorage for data and returns it
  * @returns array
  */
 const getDataFromLocal = () => {

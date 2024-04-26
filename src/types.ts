@@ -8,3 +8,15 @@ export type DebtorType = {
 	'Reference No.': string;
 	'Transaction Type': string;
 };
+
+export type PayPalType = {
+	Date: string;
+	Time: string;
+	Name: string;
+	Type: string;
+	Status: string;
+	Fee: string;
+	Gross: string;
+	Net: string;
+	Balance: string;
+};

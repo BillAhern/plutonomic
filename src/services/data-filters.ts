@@ -1,4 +1,4 @@
-import { DebtorType } from '../types.ts';
+import { DebtorType, PayPalType } from '../types.ts';
 
 /**
  * Takes an array of DebtorType objects and returns only unique objects
@@ -40,7 +40,7 @@ export const reduceAmazon = (filteredData: DebtorType[]) => {
 	return cleanAmazonArray;
 };
 
-export const reconcilePaypal = () => {};
+export const reconcilePaypal = (debitObj: DebtorType, payPaylObj: PayPalType) => {};
 
 /**
  * Filters out non-debit transactions from the provided data.
