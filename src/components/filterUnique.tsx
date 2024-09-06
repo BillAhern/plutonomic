@@ -6,7 +6,7 @@ import { DebtorType } from '../types.ts';
 import './filterUnique.css';
 
 const FilterUnique = () => {
-	const data = useContext(DebitContext);
+	const { debitData: deditData, setDebitData } = useContext(DebitContext);
 	const [uniqueDebit, setUniqueDebit] = useState([]);
 	let sessionData;
 	let currentDebit;

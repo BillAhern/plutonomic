@@ -1,21 +1,22 @@
+import { useState } from 'react';
 import './App.css';
+import DailySpend from './components/dailySpend.tsx';
 import FileConvert from './components/fileConvert.tsx';
 import FilterUnique from './components/filterUnique.tsx';
-import DailySpend from './components/dailySpend.tsx';
 import WeeklySpend from './components/weeklySpend.tsx';
-import getDataFromLocal from './services/session-data.ts';
 import { DebitContext } from './services/debitContext.ts';
 import logo from '/logo.svg';
+import { DebtorType } from './types.ts';
 
 const App = () => {
-	const sessionData = getDataFromLocal();
+	const [data, setData] = useState([{}] as DebtorType[]);
 
 	return (
 		<>
 			<div className='header'>
 				<img className='logo' src={logo} alt='plutonomic logo' />
 				<h1 className='title'>Plutonomic</h1>
-				<p>plutonomic (adj.) "of or pertaining to the science or study of wealth or riches".</p>
+				<p>plutonomic (adj.) "of or pertaining to the science or study of wealth."</p>
 				<div className='filter-select'>
 					Load bank statement <br />
 					<FileConvert />
@@ -25,7 +26,7 @@ const App = () => {
 					<FileConvert />
 				</div>
 			</div>
-			<DebitContext.Provider value={sessionData}>
+			<DebitContext.Provider value={{ debitData: data, setDebitData: setData }}>
 				<div className='grid'>
 					<div className='grid-item list-unique'>
 						<FilterUnique />
