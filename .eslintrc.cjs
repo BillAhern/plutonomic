@@ -6,5 +6,7 @@ module.exports = {
 	plugins: ['react-refresh'],
 	rules: {
 		'react-refresh/only-export-components': 'warn',
-	},
+		'comma-dangle': 'off',
+		'@typescript-eslint/comma-dangle': 'off'
+	}
 };
