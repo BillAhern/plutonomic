@@ -1,12 +1,9 @@
-import { useState } from 'react';
 import './App.css';
-import DailySpend from './components/dailySpend.tsx';
-import FileConvert from './components/fileConvert.tsx';
-import FilterUnique from './components/filterUnique.tsx';
-import WeeklySpend from './components/weeklySpend.tsx';
-import { DebitContext } from './services/debitContext.ts';
+import { DailySpend } from './components/dailySpend.tsx';
+import { FileConvert } from './components/fileConvert.tsx';
+import { FilterUnique } from './components/filterUnique.tsx';
+import { WeeklySpend } from './components/weeklySpend.tsx';
 import logo from '/logo.svg';
-import { DebtorType } from './types.ts';
 
 const App = () => {
 	return (

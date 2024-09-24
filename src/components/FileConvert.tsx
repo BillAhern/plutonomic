@@ -3,7 +3,7 @@ import Papa from 'papaparse';
 import { DebitContext } from '../services/debitContext.tsx';
 import { DebtorType } from '../types.ts';
 
-const FileConvert = () => {
+export const FileConvert = () => {
 	const { debitData, setDebitData } = useContext(DebitContext);
 
 	let csvData: any;
@@ -40,5 +40,3 @@ const FileConvert = () => {
 		</div>
 	);
 };
-
-export default FileConvert;
