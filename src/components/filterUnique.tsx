@@ -1,21 +1,38 @@
 import { useContext, useEffect, useState } from 'react';
 import { getUniqueItems } from '../services/data-filters.ts';
 import { DebitContext } from '../services/debitContext.tsx';
-import getDataFromLocal from '../services/session-data.js';
 import './filterUnique.css';
-import { DebtorType } from '../types.ts';
 
-const FilterUnique = () => {
+// Probabaly refactor this component as it does more than just filter unique debit items
+
+/**
+ * This component filters unique debit items from the debitData context and displays them as a list of checkboxes.
+ * @component
+ * @example
+ * return (
+ *   <FilterUnique />
+ * )
+ */
+export const FilterUnique = () => {
 	const { debitData, setDebitData } = useContext(DebitContext);
 	const [uniqueDebit, setUniqueDebit] = useState([]);
 	let currentDebit;
 
+	/**
+	 * Handles the file loaded event by filtering unique items from debitData.
+	 * @function
+	 */
 	const handleFileLoaded = () => {
 		const filteredData: any = getUniqueItems(debitData);
 		setUniqueDebit(filteredData);
 		console.log('filteredData:\n', filteredData);
 	};
 
+	/**
+	 * Handles change events for input elements.
+	 * @function
+	 * @param {Event} e - The event object.
+	 */
 	const handleChangeEvent = (e: Event) => {
 		const target = e.target as HTMLInputElement;
 
@@ -42,7 +59,12 @@ const FilterUnique = () => {
 		};
 	}, [debitData]);
 
-	const setCurrentDebit = (e: any) => {
+	/**
+	 * Sets the current debit based on the checkbox label.
+	 * @function
+	 * @param {Event} e - The event object.
+	 */
+	const setCheckedDebit = (e: any) => {
 		const target = e.target as HTMLInputElement;
 		currentDebit = target.labels && target.labels.length > 0 ? target.labels[0].innerText : 'No labels found';
 		console.log(currentDebit);
@@ -53,7 +75,7 @@ const FilterUnique = () => {
 			<ul>
 				{uniqueDebit.map((debit: string, index: number) => (
 					<li key={index}>
-						<input type='checkbox' id={`checkbox-${index}`} onChange={setCurrentDebit} />
+						<input type='checkbox' id={`checkbox-${index}`} onChange={setCheckedDebit} />
 						<label htmlFor={`checkbox-${index}`}>{debit}</label>
 					</li>
 				))}
@@ -61,5 +83,3 @@ const FilterUnique = () => {
 		</>
 	);
 };
-
-export default FilterUnique;
