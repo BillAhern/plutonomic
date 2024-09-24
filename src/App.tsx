@@ -9,8 +9,6 @@ import logo from '/logo.svg';
 import { DebtorType } from './types.ts';
 
 const App = () => {
-	const [data, setData] = useState([{}] as DebtorType[]);
-
 	return (
 		<>
 			<div className='header'>
@@ -26,23 +24,21 @@ const App = () => {
 					<FileConvert />
 				</div>
 			</div>
-			<DebitContext.Provider value={{ debitData: data, setDebitData: setData }}>
-				<div className='grid'>
-					<div className='grid-item list-unique'>
-						<FilterUnique />
-					</div>
-					<div className='grid-item daily-spend'>
-						<DailySpend />
-					</div>
-					<div className='grid-item weekly-spend'>
-						<WeeklySpend />
-					</div>
-					<div className='grid-item'></div>
-					<div className='grid-item'></div>
-					<div className='grid-item'></div>
-					<div className='grid-item'></div>
+			<div className='grid'>
+				<div className='grid-item list-unique'>
+					<FilterUnique />
 				</div>
-			</DebitContext.Provider>
+				<div className='grid-item daily-spend'>
+					<DailySpend />
+				</div>
+				<div className='grid-item weekly-spend'>
+					<WeeklySpend />
+				</div>
+				<div className='grid-item'></div>
+				<div className='grid-item'></div>
+				<div className='grid-item'></div>
+				<div className='grid-item'></div>
+			</div>
 		</>
 	);
 };

@@ -1,6 +1,6 @@
 import React, { useEffect, useContext, useState } from 'react';
 import Papa from 'papaparse';
-import { DebitContext } from '../services/debitContext.ts';
+import { DebitContext } from '../services/debitContext.tsx';
 import { DebtorType } from '../types.ts';
 
 const FileConvert = () => {
@@ -12,7 +12,7 @@ const FileConvert = () => {
 
 	useEffect(() => {
 		console.log(debitData);
-	}, []);
+	}, [debitData]);
 
 	const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
 		try {

@@ -1,23 +1,22 @@
-import React, { useState, useContext } from 'react';
-import { DebitContext } from '../services/debitContext.ts';
+import { useContext, useEffect, useState } from 'react';
 import { getUniqueItems } from '../services/data-filters.ts';
+import { DebitContext } from '../services/debitContext.tsx';
 import getDataFromLocal from '../services/session-data.js';
-import { DebtorType } from '../types.ts';
 import './filterUnique.css';
+import { DebtorType } from '../types.ts';
 
 const FilterUnique = () => {
-	const { debitData: deditData, setDebitData } = useContext(DebitContext);
+	const { debitData, setDebitData } = useContext(DebitContext);
 	const [uniqueDebit, setUniqueDebit] = useState([]);
-	let sessionData;
 	let currentDebit;
 
-	addEventListener('file-loaded', () => {
-		sessionData = getDataFromLocal();
-		const filteredData = getUniqueItems(sessionData);
+	const handleFileLoaded = () => {
+		const filteredData: any = getUniqueItems(debitData);
 		setUniqueDebit(filteredData);
-	});
+		console.log('filteredData:\n', filteredData);
+	};
 
-	addEventListener('change', (e: Event) => {
+	const handleChangeEvent = (e: Event) => {
 		const target = e.target as HTMLInputElement;
 
 		if (target.type === 'checkbox') {
@@ -27,11 +26,25 @@ const FilterUnique = () => {
 				console.log('target unchecked');
 			}
 		}
-	});
+	};
+
+	useEffect(() => {
+		if (debitData.length > 0) {
+			handleFileLoaded();
+		}
+
+		window.addEventListener('file-loaded', handleFileLoaded);
+		window.addEventListener('change', handleChangeEvent);
+
+		return () => {
+			window.removeEventListener('file-loaded', handleFileLoaded);
+			window.removeEventListener('change', handleChangeEvent);
+		};
+	}, [debitData]);
 
 	const setCurrentDebit = (e: any) => {
 		const target = e.target as HTMLInputElement;
-		currentDebit = target.value;
+		currentDebit = target.labels && target.labels.length > 0 ? target.labels[0].innerText : 'No labels found';
 		console.log(currentDebit);
 	};
 
