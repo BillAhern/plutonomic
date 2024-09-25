@@ -2,6 +2,7 @@ import './App.css';
 import { DailySpend } from './components/dailySpend.tsx';
 import { FileConvert } from './components/fileConvert.tsx';
 import { FilterUnique } from './components/filterUnique.tsx';
+import ReconcilePayPal from './components/reconcilePayPal.tsx';
 import { WeeklySpend } from './components/weeklySpend.tsx';
 import logo from '/logo.svg';
 
@@ -18,7 +19,7 @@ const App = () => {
 				</div>
 				<div className='paypal-select'>
 					Load PayPal statement <br />
-					<FileConvert />
+					<ReconcilePayPal />
 				</div>
 			</div>
 			<div className='grid'>

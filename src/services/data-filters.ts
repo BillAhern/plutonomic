@@ -40,7 +40,8 @@ export const reduceAmazon = (filteredData: DebtorType[]) => {
 	return cleanAmazonArray;
 };
 
-export const reconcilePaypal = (debitObj: DebtorType, payPaylObj: PayPalType) => {};
+// This will be its own component
+// export const reconcilePaypal = (debitObj: DebtorType, payPaylObj: PayPalType) => {};
 
 /**
  * Filters out non-debit transactions from the provided data.

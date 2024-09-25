@@ -1,8 +1,17 @@
-import React, { useEffect, useContext, useState } from 'react';
 import Papa from 'papaparse';
+import { ChangeEvent, useContext } from 'react';
 import { DebitContext } from '../services/debitContext.tsx';
 import { DebtorType } from '../types.ts';
+import './filterConvert.css';
 
+/**
+ * This component allows users to upload a CSV file, parses the file, and updates DebitContext with the parsed data.
+ * @component
+ * @example
+ * return (
+ *   <FileConvert />
+ * )
+ */
 export const FileConvert = () => {
 	const { debitData, setDebitData } = useContext(DebitContext);
 
@@ -10,11 +19,12 @@ export const FileConvert = () => {
 	let converted: any;
 	let convertedDataArray: DebtorType[];
 
-	useEffect(() => {
-		console.log(debitData);
-	}, [debitData]);
-
-	const handleFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+	/**
+	 * Handles the file change event, reads the file, parses it, and updates DebitContext.
+	 * @function
+	 * @param {React.ChangeEvent<HTMLInputElement>} event - The file change event.
+	 */
+	const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
 		try {
 			const file = event.target.files![0];
 			const fileReader = new FileReader();
@@ -36,7 +46,7 @@ export const FileConvert = () => {
 
 	return (
 		<div>
-			<input type='file' onChange={handleFileChange} />
+			<input id='file-upload' className='input-button' type='file' onChange={handleFileChange} />
 		</div>
 	);
 };
