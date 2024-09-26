@@ -1,5 +1,4 @@
 import './App.css';
-import { DailySpend } from './components/dailySpend.tsx';
 import { FileConvert } from './components/fileConvert.tsx';
 import { FilterUnique } from './components/filterUnique.tsx';
 import ReconcilePayPal from './components/reconcilePayPal.tsx';
@@ -26,12 +25,10 @@ const App = () => {
 				<div className='grid-item list-unique'>
 					<FilterUnique />
 				</div>
-				<div className='grid-item daily-spend'>
-					<DailySpend />
-				</div>
 				<div className='grid-item weekly-spend'>
 					<WeeklySpend />
 				</div>
+				<div className='grid-item'></div>
 				<div className='grid-item'></div>
 				<div className='grid-item'></div>
 				<div className='grid-item'></div>
