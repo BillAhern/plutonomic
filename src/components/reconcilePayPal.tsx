@@ -6,12 +6,19 @@ import './reconcilePayPal.css';
 
 const ReconcilePayPal = () => {
 	const { debitData, setDebitData } = useContext(DebitContext);
-	const [payPalData, setPayPalData] = useState([]);
+	const [payPalData, setPayPalData] = useState<PayPalType[]>([]);
 
 	let csvData: any;
 	let converted: any;
-	let convertedDataArray: PayPalType[];
 	let reconciledData: any;
+
+	useEffect(() => {
+		if (payPalData.length > 0) {
+			reconciledData = reconcileDataFromPayPal(debitData, payPalData);
+			setDebitData(reconciledData);
+			console.log('check debit data', debitData);
+		}
+	}, [payPalData]);
 
 	const handleFileChange = async (event: ChangeEvent<HTMLInputElement>) => {
 		try {
@@ -21,13 +28,9 @@ const ReconcilePayPal = () => {
 			fileReader.onload = async (event: any) => {
 				csvData = event.target.result;
 				converted = Papa.parse(csvData, { header: true });
-				setPayPalData(converted);
-				// convertedDataArray = converted?.data as PayPalType[];
-				// Add the logic here to loop through debitData and replace PayPal refs in debitData with actual debtors from PayPal
-				reconciledData = getDataFromPayPal(debitData, payPalData);
-
-				setDebitData(reconciledData);
-				dispatchEvent(new Event('file-loaded'));
+				const filteredPaypalData = filterPayPalData(converted.data);
+                setPayPalData(filteredPaypalData);
+                dispatchEvent(new Event('file-loaded'));
 			};
 
 			fileReader.readAsText(file);
@@ -36,11 +39,37 @@ const ReconcilePayPal = () => {
 		}
 	};
 
-    const getDataFromPayPal = (debitData: DebtorType[], payPalData: PayPalType[]) => {
-        debitData.forEach(debitItem => {
-            
-        });
-    };
+	const filterPayPalData = (payPalData: PayPalType[]): PayPalType[] => {
+		return payPalData.filter((item) => item.Status === 'Completed');
+	};
+
+	const reconcileDataFromPayPal = (debitData: DebtorType[], payPalData: PayPalType[]) => {
+		const reconciledDebitData: DebtorType[] = [];
+
+		debitData.forEach((debitItem) => {
+			const isPayPal = getIsPayPal(debitItem);
+
+			if (isPayPal) {
+				payPalData.forEach((payPalItem) => {
+					if (payPalItem.Gross === debitItem.Amount) {
+						console.log(payPalItem);
+						debitItem.Description = payPalItem.Name;
+						reconciledDebitData.push(debitItem);
+					}
+				});
+			} else {
+				reconciledDebitData.push(debitItem);
+			}
+		});
+
+		return reconciledDebitData;
+	};
+
+	const getIsPayPal = (debitItem: DebtorType) => {
+		if (debitItem && debitItem.Description) {
+			return debitItem.Description.includes('PAYPAL');
+		}
+	};
 
 	return (
 		<div>
