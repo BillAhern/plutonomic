@@ -25,7 +25,6 @@ export const FilterUnique = () => {
 	const handleFileLoaded = () => {
 		const filteredData: any = getUniqueItems(debitData);
 		setUniqueDebit(filteredData);
-		console.log('filteredData:\n', filteredData);
 	};
 
 	/**
@@ -67,7 +66,6 @@ export const FilterUnique = () => {
 	const setCheckedDebit = (e: any) => {
 		const target = e.target as HTMLInputElement;
 		currentDebit = target.labels && target.labels.length > 0 ? target.labels[0].innerText : 'No labels found';
-		console.log(currentDebit);
 	};
 
 	return (

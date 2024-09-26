@@ -16,7 +16,6 @@ const ReconcilePayPal = () => {
 		if (payPalData.length > 0) {
 			reconciledData = reconcileDataFromPayPal(debitData, payPalData);
 			setDebitData(reconciledData);
-			console.log('check debit data', debitData);
 		}
 	}, [payPalData]);
 
@@ -52,7 +51,6 @@ const ReconcilePayPal = () => {
 			if (isPayPal) {
 				payPalData.forEach((payPalItem) => {
 					if (payPalItem.Gross === debitItem.Amount) {
-						console.log(payPalItem);
 						debitItem.Description = payPalItem.Name;
 						reconciledDebitData.push(debitItem);
 					}
