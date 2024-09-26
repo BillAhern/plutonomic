@@ -27,12 +27,12 @@ export const reduceAmazon = (filteredData: DebtorType[]) => {
 	let amazonCount = 0;
 
 	filteredData.forEach((item: DebtorType) => {
-		const isAmazon = getItemByRegex(item.Description, /amazon/i);
+		const isAmazon = /amazon/i.test(item.Description);
 
 		if (isAmazon && amazonCount === 0) {
 			cleanAmazonArray.push(item);
 			amazonCount++;
-		} else {
+		} else if (!isAmazon) {
 			cleanAmazonArray.push(item);
 		}
 	});
@@ -67,23 +67,6 @@ export const removeNonDebit = (data: DebtorType[]) => {
 	});
 
 	return debitArray;
-};
-
-/**
- * Checks if a given regular expression matches any part of a description.
- *
- * @param {string} description - The description to be searched.
- * @param {RegExp} descValue - The regular expression to be used for searching.
- * @returns {boolean} Returns true if the regular expression matches any part of the description, false otherwise.
- */
-const getItemByRegex = (description: string, descValue: RegExp): boolean => {
-	if (description === undefined) {
-		return false;
-	} else if (description.search(descValue) !== -1) {
-		return true;
-	} else {
-		return false;
-	}
 };
 
 /**
