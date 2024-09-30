@@ -2,7 +2,6 @@ import './App.css';
 import { FileConvert } from './components/fileConvert.tsx';
 import { FilterUnique } from './components/filterUnique.tsx';
 import ReconcilePayPal from './components/reconcilePayPal.tsx';
-import { WeeklySpend } from './components/weeklySpend.tsx';
 import logo from '/logo.svg';
 
 const App = () => {
@@ -26,7 +25,6 @@ const App = () => {
 					<FilterUnique />
 				</div>
 				<div className='grid-item weekly-spend'>
-					<WeeklySpend />
 				</div>
 				<div className='grid-item'></div>
 				<div className='grid-item'></div>
