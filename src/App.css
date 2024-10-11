@@ -37,8 +37,6 @@ div {
     flex: initial;
 }
 
-
-
 .grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -57,6 +55,8 @@ div {
     grid-row: 1 / 7;
 }
 
+/* Adjust grid for mobile views to a single column. First grid-item may need height adjustment
+Keep this at teh bottom to override grid behavior  */
 @media (max-width: 940px) {
     .grid {
         grid-template-columns: 1fr;
