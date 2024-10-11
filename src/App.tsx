@@ -2,7 +2,7 @@ import './App.css';
 import { FileConvert } from './components/fileConvert.tsx';
 import { FilterUnique } from './components/filterUnique.tsx';
 import ReconcilePayPal from './components/reconcilePayPal.tsx';
-import logo from '/logo.svg';
+import logo from '../src/assets/logo-80.png'
 
 const App = () => {
 	return (
@@ -10,7 +10,7 @@ const App = () => {
 			<div className='header'>
 				<img className='logo' src={logo} alt='plutonomic logo' />
 				<h1 className='title'>Plutonomic</h1>
-				<p>plutonomic (adj.) "of or pertaining to the science or study of wealth."</p>
+				<p className='app-name'>plutonomic (adj.) "of or pertaining to the science or study of wealth."</p>
 				<div className='filter-select'>
 					Load bank statement <br />
 					<FileConvert />
@@ -24,8 +24,7 @@ const App = () => {
 				<div className='grid-item list-unique'>
 					<FilterUnique />
 				</div>
-				<div className='grid-item weekly-spend'>
-				</div>
+				<div className='grid-item transaction-summary'></div>
 				<div className='grid-item'></div>
 				<div className='grid-item'></div>
 				<div className='grid-item'></div>
