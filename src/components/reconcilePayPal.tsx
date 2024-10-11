@@ -70,22 +70,26 @@ const ReconcilePayPal = () => {
 	const reconcileDataFromPayPal = (debitData: DebtorType[], payPalData: PayPalType[]) => {
 		const reconciledDebitData: DebtorType[] = [];
 
-		debitData.forEach((debitItem) => {
-			const isPayPal = getIsPayPal(debitItem);
+		try {
+			debitData.forEach((debitItem) => {
+				const isPayPal = getIsPayPal(debitItem);
 
-			if (isPayPal) {
-				payPalData.forEach((payPalItem) => {
-					if (payPalItem.Gross === debitItem.Amount) {
-						debitItem.Description = payPalItem.Name;
-						reconciledDebitData.push(debitItem);
-					}
-				});
-			} else {
-				reconciledDebitData.push(debitItem);
-			}
-		});
+				if (isPayPal) {
+					payPalData.forEach((payPalItem) => {
+						if (payPalItem.Gross === debitItem.Amount) {
+							debitItem.Description = payPalItem.Name;
+							reconciledDebitData.push(debitItem);
+						}
+					});
+				} else {
+					reconciledDebitData.push(debitItem);
+				}
+			});
 
-		return reconciledDebitData;
+			return reconciledDebitData;
+		} catch (e) {
+			console.log('reconcilePaypal > reconcileDataFromPayPal: ', e);
+		}
 	};
 
 	/**
