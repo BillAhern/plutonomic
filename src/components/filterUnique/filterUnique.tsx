@@ -1,6 +1,8 @@
+import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
-import { getUniqueItems } from '../services/data-filters.ts';
-import { DebitContext } from '../services/debitContext.tsx';
+import { getUniqueItems } from '../../services/data-filters.ts';
+import { DebitContext } from '../../services/debitContext.tsx';
+import { ArrowDropDown } from '@mui/icons-material';
 import './filterUnique.css';
 
 // Probabaly refactor this component as it does more than just filter unique debit items
@@ -70,14 +72,22 @@ export const FilterUnique = () => {
 
 	return (
 		<>
-			<ul>
-				{uniqueDebit.map((debit: string, index: number) => (
-					<li key={index}>
-						<input type='checkbox' id={`checkbox-${index}`} onChange={setCheckedDebit} />
-						<label htmlFor={`checkbox-${index}`}>{debit}</label>
-					</li>
-				))}
-			</ul>
+			<Accordion defaultExpanded={true}>
+				<AccordionSummary expandIcon={<ArrowDropDown />} aria-controls='panel2-content' id='panel2-header'>
+					<Typography>Unique Debits</Typography>
+				</AccordionSummary>
+				<AccordionDetails>
+					<ul>
+						{uniqueDebit.map((debit: string, index: number) => (
+							<li key={index}>
+								{/* Add checkboxes back in when a better use case can be concieved */}
+								{/* <input type='checkbox' id={`checkbox-${index}`} onChange={setCheckedDebit} /> */}
+								<label htmlFor={`checkbox-${index}`}>{debit}</label>
+							</li>
+						))}
+					</ul>
+				</AccordionDetails>
+			</Accordion>
 		</>
 	);
 };

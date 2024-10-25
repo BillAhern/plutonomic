@@ -1,7 +1,7 @@
 import Papa from 'papaparse';
 import { ChangeEvent, useContext } from 'react';
-import { DebitContext } from '../services/debitContext.tsx';
-import { DebtorType } from '../types.ts';
+import { DebitContext } from '../../services/debitContext.tsx';
+import { DebtorType } from '../../types.ts';
 import './filterConvert.css';
 
 /**

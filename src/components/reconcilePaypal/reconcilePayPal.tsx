@@ -1,7 +1,7 @@
 import Papa from 'papaparse';
 import { ChangeEvent, useContext, useEffect, useState } from 'react';
-import { DebitContext } from '../services/debitContext.tsx';
-import { PayPalType, DebtorType } from '../types.ts';
+import { DebitContext } from '../../services/debitContext.tsx';
+import { PayPalType, DebtorType } from '../../types.ts';
 import './reconcilePayPal.css';
 
 /**

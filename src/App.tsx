@@ -1,8 +1,9 @@
 import './App.css';
-import { FileConvert } from './components/fileConvert.tsx';
-import { FilterUnique } from './components/filterUnique.tsx';
-import ReconcilePayPal from './components/reconcilePayPal.tsx';
-import logo from '../src/assets/logo-80.png'
+import { FileConvert } from './components/fileConvert/fileConvert.tsx';
+import { FilterUnique } from './components/filterUnique/filterUnique.tsx';
+import ReconcilePayPal from './components/reconcilePaypal/reconcilePayPal.tsx';
+import logo from '../src/assets/logo-80.png';
+import TransactionSummary from './components/transactionSummary/transactionSummary.tsx';
 
 const App = () => {
 	return (
@@ -24,7 +25,9 @@ const App = () => {
 				<div className='grid-item list-unique'>
 					<FilterUnique />
 				</div>
-				<div className='grid-item transaction-summary'></div>
+				<div className='grid-item transaction-summary'>
+					<TransactionSummary />
+				</div>
 				<div className='grid-item'></div>
 				<div className='grid-item'></div>
 				<div className='grid-item'></div>
